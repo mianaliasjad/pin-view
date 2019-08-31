@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
 
+    
     <com.gamemalt.pinview.PinView
         android:id="@+id/pin_view"
         android:layout_width="match_parent"
