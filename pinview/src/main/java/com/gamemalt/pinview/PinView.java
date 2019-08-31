@@ -20,6 +20,7 @@ public class PinView extends LinearLayout {
     private PinViewListener pinViewListener;
     private View mainLayout;
 
+
     private int pinButtonBackground;
     private int imageClearBackground;
     private int buttonTextColor;
