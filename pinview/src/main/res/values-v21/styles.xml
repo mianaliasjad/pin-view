@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="PinPadButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:colorControlHighlight">@color/pin_pad_button_ripple_color</item>
+    </style>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="PinView">
+        <attr name="pinButtonBackground" format="reference"/>
+        <attr name="buttonClearBackground" format="reference" />
+        <attr name="buttonTextColor" format="color" />
+        <attr name="buttonTextSize" format="integer" />
+        <attr name="isHapticFeedBack" format="boolean" />
+
+    </declare-styleable>
+
+</resources>

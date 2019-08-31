@@ -1,0 +1,9 @@
+<resources>
+
+
+    <style name="PinPadButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/pinpad_button_selector_v_16</item>
+    </style>
+
+
+</resources>
