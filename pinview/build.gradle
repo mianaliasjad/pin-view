@@ -14,9 +14,6 @@ android {
 
     }
 
-    sourceSets {
-        main.res.srcDirs 'res', 'res-public'
-    }
 
 
     buildTypes {
