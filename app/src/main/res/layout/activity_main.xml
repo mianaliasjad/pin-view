@@ -15,7 +15,8 @@
         android:layout_gravity="center_horizontal"
         app:buttonTextColor="#FFEB3B"
         app:buttonTextSize="30"
-        app:isHapticFeedBack="false"
+        app:isHapticFeedBack="true"
+        app:buttonOkBackground="@drawable/v_tick"
         app:buttonClearBackground="@drawable/v_back" />
 
 

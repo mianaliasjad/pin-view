@@ -145,6 +145,15 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
+        <ImageButton
+            android:id="@+id/button_ok"
+            style="@style/PinPadButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/v_tick"
+            android:theme="@style/PinPadButton" />
 
         <TextView
             android:id="@+id/button_0"
@@ -157,7 +166,7 @@
             android:theme="@style/PinPadButton" />
 
         <ImageButton
-            android:id="@+id/clear"
+            android:id="@+id/button_clear"
             style="@style/PinPadButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"

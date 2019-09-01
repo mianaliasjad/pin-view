@@ -5,9 +5,12 @@
     <declare-styleable name="PinView">
         <attr name="pinButtonBackground" format="reference"/>
         <attr name="buttonClearBackground" format="reference" />
+        <attr name="buttonOkBackground" format="reference" />
         <attr name="buttonTextColor" format="color" />
         <attr name="buttonTextSize" format="integer" />
         <attr name="isHapticFeedBack" format="boolean" />
+        <attr name="showOkButton" format="boolean" />
+        <attr name="showClearButton" format="boolean" />
 
     </declare-styleable>
 

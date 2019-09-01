@@ -16,26 +16,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        PinView pinView=findViewById(R.id.pin_view);
+        PinView pinView = findViewById(R.id.pin_view);
 
         pinView.setListener(new PinViewListener() {
             @Override
             public void onPinButtonClick(int num) {
-                Log.d("yoyo",""+num);
+                Log.d("pinviewtest", "" + num);
             }
 
             @Override
             public void onClearButtonClick() {
-                Log.d("yoyo","onClearButtonClick");
+                Log.d("pinviewtest", "onClearButtonClick");
 
             }
 
             @Override
             public void onClearButtonLongClick() {
-                Log.d("yoyo","onClearButtonLongClick");
+                Log.d("pinviewtest", "onClearButtonLongClick");
+
+            }
+
+            @Override
+            public void onOkButtonClick() {
+                Log.d("pinviewtest", "onOkButtonClick");
 
             }
         });
-        
+
     }
 }

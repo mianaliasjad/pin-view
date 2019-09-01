@@ -22,12 +22,16 @@ public class PinView extends LinearLayout {
 
 
     private int pinButtonBackground;
-    private int imageClearBackground;
+    private int buttonClearBackground;
+    private int buttonOkBackground;
     private int buttonTextColor;
     private int buttonTextSize;
 
 
     private ImageButton buttonClear;
+    private ImageButton buttonOk;
+
+    private boolean showOkButton, showClearButton;
 
     private boolean isHapticFeedBack = false;
 
@@ -58,11 +62,15 @@ public class PinView extends LinearLayout {
     private void setDefaultAttr(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PinView);
         try {
-            imageClearBackground = typedArray.getResourceId(R.styleable.PinView_buttonClearBackground, R.drawable.v_back);
+            buttonClearBackground = typedArray.getResourceId(R.styleable.PinView_buttonClearBackground, R.drawable.v_back);
+            buttonOkBackground = typedArray.getResourceId(R.styleable.PinView_buttonOkBackground, R.drawable.v_tick);
             pinButtonBackground = typedArray.getResourceId(R.styleable.PinView_pinButtonBackground, android.R.color.transparent);
             buttonTextColor = typedArray.getColor(R.styleable.PinView_buttonTextColor, Color.WHITE);
             buttonTextSize = typedArray.getInt(R.styleable.PinView_buttonTextSize, 24);
             isHapticFeedBack = typedArray.getBoolean(R.styleable.PinView_isHapticFeedBack, false);
+            showOkButton = typedArray.getBoolean(R.styleable.PinView_showOkButton, true);
+            showClearButton = typedArray.getBoolean(R.styleable.PinView_showClearButton, true);
+
 
         } finally {
             typedArray.recycle();
@@ -100,14 +108,21 @@ public class PinView extends LinearLayout {
         });
 
         buttonClear.setOnClickListener(clickListener);
+        buttonOk.setOnClickListener(clickListener);
+
+        setShowClearButton(showClearButton);
+        setShowOkButton(showOkButton);
 
     }
 
 
     private void findAllViews() {
 
-        buttonClear = findViewById(R.id.clear);
-        setImageClearBackground(imageClearBackground);
+        buttonClear = findViewById(R.id.button_clear);
+        buttonOk = findViewById(R.id.button_ok);
+
+        setButtonClearBackground(buttonClearBackground);
+        setButtonOkBackground(buttonOkBackground);
 
         pinButtons[0] = findViewById(R.id.button_0);
         pinButtons[1] = findViewById(R.id.button_1);
@@ -152,16 +167,20 @@ public class PinView extends LinearLayout {
             if (pinViewListener == null || !isEnabled)
                 return;
 
-            if (v.getId() == R.id.clear) {
+            if (v.getId() == R.id.button_clear) {
 
                 pinViewListener.onClearButtonClick();
 
+            } else if (v.getId() == R.id.button_ok) {
+
+                pinViewListener.onOkButtonClick();
             } else {
                 pinViewListener.onPinButtonClick(Integer.parseInt(((TextView) v).getText().toString().trim()));
 
             }
 
-            if (isHapticFeedBackEnabled()) {
+            if (isHapticFeedBackEnabled() && v.getId() != R.id.button_ok) {
+                //we don't vibrate on OK button
                 vibrate();
             }
 
@@ -188,6 +207,7 @@ public class PinView extends LinearLayout {
 //        ColorStateList ColorStateList = getResources().getColorStateList(pinButtonTextColor);
 
         buttonClear.setColorFilter(pinButtonTextColor, PorterDuff.Mode.SRC_IN);
+        buttonOk.setColorFilter(pinButtonTextColor, PorterDuff.Mode.SRC_IN);
 
         for (TextView button : pinButtons) {
             button.setTextColor(pinButtonTextColor);
@@ -207,9 +227,17 @@ public class PinView extends LinearLayout {
     /*
      * Provide resource ID
      * */
-    public void setImageClearBackground(int imageClearBackground) {
-        this.imageClearBackground = imageClearBackground;
+    public void setButtonClearBackground(int imageClearBackground) {
+        this.buttonClearBackground = imageClearBackground;
         buttonClear.setImageResource(imageClearBackground);
+    }
+
+    /*
+     * Provide resource ID
+     * */
+    public void setButtonOkBackground(int imageClearBackground) {
+        this.buttonOkBackground = imageClearBackground;
+        buttonOk.setImageResource(imageClearBackground);
     }
 
     public boolean isHapticFeedBackEnabled() {
@@ -224,5 +252,13 @@ public class PinView extends LinearLayout {
         this.isEnabled = isEnabled;
     }
 
+    public void setShowOkButton(boolean shouldShow){
+        showOkButton=shouldShow;
+        buttonOk.setVisibility(shouldShow ? VISIBLE : INVISIBLE);
+    }
+    public void setShowClearButton(boolean shouldShow){
+        showClearButton=shouldShow;
+        buttonClear.setVisibility(shouldShow ? VISIBLE : INVISIBLE);
+    }
 
 }

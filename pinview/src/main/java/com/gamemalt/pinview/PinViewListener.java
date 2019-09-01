@@ -1,11 +1,16 @@
 package com.gamemalt.pinview;
 
-public interface PinViewListener {
+public abstract class PinViewListener {
 
-    void onPinButtonClick(int num);
+    public abstract void onPinButtonClick(int num);
 
-    void onClearButtonClick();
+    public void onClearButtonClick() {
+    }
 
-    void onClearButtonLongClick();
+    public void onClearButtonLongClick() {
+    }
+
+    public void onOkButtonClick() {
+    }
 
 }

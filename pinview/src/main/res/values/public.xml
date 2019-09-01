@@ -3,6 +3,7 @@
 
     <public/>
 
-    <!--<public name="pin_pad_button_ripple_color" type="color"/>-->
+    <public name="v_back" type="drawable"/>
+    <public name="v_tick" type="drawable"/>
 
 </resources>
