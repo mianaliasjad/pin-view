@@ -3,4 +3,6 @@
 
     <public/>
 
+    <public name="pin_pad_button_ripple_color" type="color"/>
+
 </resources>
