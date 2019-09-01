@@ -2,7 +2,6 @@
 <resources>
 
 
-    <color name="transparent">#00000000</color>
     <color name="pin_pad_button_ripple_color">#CDDC39</color>
 
 </resources>

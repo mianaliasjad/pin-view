@@ -59,7 +59,7 @@ public class PinView extends LinearLayout {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PinView);
         try {
             imageClearBackground = typedArray.getResourceId(R.styleable.PinView_buttonClearBackground, R.drawable.v_back);
-            pinButtonBackground = typedArray.getResourceId(R.styleable.PinView_pinButtonBackground, R.color.transparent);
+            pinButtonBackground = typedArray.getResourceId(R.styleable.PinView_pinButtonBackground, android.R.color.transparent);
             buttonTextColor = typedArray.getColor(R.styleable.PinView_buttonTextColor, Color.WHITE);
             buttonTextSize = typedArray.getInt(R.styleable.PinView_buttonTextSize, 24);
             isHapticFeedBack = typedArray.getBoolean(R.styleable.PinView_isHapticFeedBack, false);
