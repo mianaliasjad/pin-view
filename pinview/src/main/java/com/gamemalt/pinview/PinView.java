@@ -5,11 +5,15 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.widget.TextViewCompat;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,6 +31,10 @@ public class PinView extends LinearLayout {
     private int buttonTextColor;
     private int buttonTextSize;
 
+    private int minButtonTextSize;
+    private int maxButtonTextSize;
+
+    private int autoSizeStepGranularity;
 
     private ImageButton buttonClear;
     private ImageButton buttonOk;
@@ -66,7 +74,14 @@ public class PinView extends LinearLayout {
             buttonOkBackground = typedArray.getResourceId(R.styleable.PinView_buttonOkBackground, R.drawable.v_tick);
             pinButtonBackground = typedArray.getResourceId(R.styleable.PinView_pinButtonBackground, android.R.color.transparent);
             buttonTextColor = typedArray.getColor(R.styleable.PinView_buttonTextColor, Color.WHITE);
+
             buttonTextSize = typedArray.getInt(R.styleable.PinView_buttonTextSize, 24);
+
+            minButtonTextSize= typedArray.getInt(R.styleable.PinView_minButtonTextSize, -1);
+            maxButtonTextSize= typedArray.getInt(R.styleable.PinView_maxButtonTextSize, -1);
+
+            autoSizeStepGranularity= typedArray.getInt(R.styleable.PinView_buttonAutoSizeStepGranularity, 1);
+
             isHapticFeedBack = typedArray.getBoolean(R.styleable.PinView_isHapticFeedBack, false);
             showOkButton = typedArray.getBoolean(R.styleable.PinView_showOkButton, true);
             showClearButton = typedArray.getBoolean(R.styleable.PinView_showClearButton, true);
@@ -141,8 +156,7 @@ public class PinView extends LinearLayout {
         }
 
         setPinButtonTextColor(buttonTextColor);
-        setPinButtonTextSize(buttonTextSize);
-
+        checkAndSetButtonTextSize();
     }
 
 
@@ -215,12 +229,42 @@ public class PinView extends LinearLayout {
     }
 
 
+    private void checkAndSetButtonTextSize(){
+        if(minButtonTextSize<0 || maxButtonTextSize<0){
+
+            setPinButtonTextSize(buttonTextSize);
+        }else {
+            setPinButtonAutoTextSize(minButtonTextSize,maxButtonTextSize,autoSizeStepGranularity);
+        }
+    }
+
+
+    /*
+    * Sets button text
+    * size in SP
+    * */
     public void setPinButtonTextSize(int pinButtonTextSize) {
         buttonTextSize = pinButtonTextSize;
 
         for (TextView button : pinButtons) {
             button.setTextSize(pinButtonTextSize);
         }
+    }
+
+    /*
+    * Sets auto text size automatically within the range of given min and max sizes
+    * Size is in SP
+    * */
+    public void setPinButtonAutoTextSize(int minSize,int maxSize,int autoSizeStepGranularity){
+        this.minButtonTextSize=minSize;
+        this.maxButtonTextSize=maxSize;
+        this.autoSizeStepGranularity=autoSizeStepGranularity;
+
+        for (TextView button : pinButtons) {
+            TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(button,minSize,maxSize,autoSizeStepGranularity, TypedValue.COMPLEX_UNIT_SP);
+        }
+
+
     }
 
 

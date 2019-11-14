@@ -7,7 +7,12 @@
         <attr name="buttonClearBackground" format="reference" />
         <attr name="buttonOkBackground" format="reference" />
         <attr name="buttonTextColor" format="color" />
+
         <attr name="buttonTextSize" format="integer" />
+        <attr name="minButtonTextSize" format="integer" />
+        <attr name="maxButtonTextSize" format="integer" />
+        <attr name="buttonAutoSizeStepGranularity" format="integer" />
+
         <attr name="isHapticFeedBack" format="boolean" />
         <attr name="showOkButton" format="boolean" />
         <attr name="showClearButton" format="boolean" />

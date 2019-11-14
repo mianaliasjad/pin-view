@@ -13,8 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        app:buttonTextColor="#FFEB3B"
+        app:buttonTextColor="#000000"
+
+        app:buttonAutoSizeStepGranularity="1"
+
         app:buttonTextSize="30"
+
+        app:minButtonTextSize="10"
+        app:maxButtonTextSize="30"
+
         app:isHapticFeedBack="true"
         app:buttonOkBackground="@drawable/v_tick"
         app:buttonClearBackground="@drawable/v_back" />
