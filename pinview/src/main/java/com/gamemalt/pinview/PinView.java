@@ -48,6 +48,8 @@ public class PinView extends LinearLayout {
     boolean isEnabled = true;
     private OnConfigurationChangedListener onConfigurationChangedListener;
 
+    private String passWord = "";
+
 
     public PinView(Context context) {
         super(context);
@@ -110,14 +112,18 @@ public class PinView extends LinearLayout {
             @Override
             public boolean onLongClick(View v) {
 
-                if (pinViewListener == null || !isEnabled)
+
+                if (!isEnabled)
                     return true;
 
-                pinViewListener.onClearButtonLongClick();
-
+                resetPassword();
                 if (isHapticFeedBackEnabled()) {
                     vibrate();
                 }
+
+                if (pinViewListener != null)
+                    pinViewListener.onClearButtonLongClick();
+
 
                 return true;
 
@@ -180,18 +186,28 @@ public class PinView extends LinearLayout {
         @Override
         public void onClick(View v) {
 
-            if (pinViewListener == null || !isEnabled)
+            if (!isEnabled)
                 return;
 
             if (v.getId() == R.id.button_clear) {
 
-                pinViewListener.onClearButtonClick();
+                passWord = removeLast(passWord);
+
+                if (pinViewListener != null)
+                    pinViewListener.onClearButtonClick(passWord);
 
             } else if (v.getId() == R.id.button_ok) {
 
-                pinViewListener.onOkButtonClick();
+                if (pinViewListener != null)
+                    pinViewListener.onOkButtonClick(passWord);
             } else {
-                pinViewListener.onPinButtonClick(Integer.parseInt(((TextView) v).getText().toString().trim()));
+
+                int num = Integer.parseInt(((TextView) v).getText().toString().trim());
+
+                passWord += String.valueOf(num);
+
+                if (pinViewListener != null)
+                    pinViewListener.onPinButtonClick(num, passWord);
 
             }
 
@@ -326,5 +342,24 @@ public class PinView extends LinearLayout {
 
     public interface OnConfigurationChangedListener {
         void onConfigurationChanged(Configuration newConfig);
+    }
+
+    public void resetPassword() {
+        passWord = "";
+    }
+
+    public String getPassword() {
+        return passWord;
+    }
+
+
+    /*
+     * Removes the last character of the string and return the new string
+     * */
+    public static String removeLast(String str) {
+        if (str != null && str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
     }
 }

@@ -2,15 +2,15 @@ package com.gamemalt.pinview;
 
 public abstract class PinViewListener {
 
-    public abstract void onPinButtonClick(int num);
+    public abstract void onPinButtonClick(int num,String currentPassword);
 
-    public void onClearButtonClick() {
+    public void onClearButtonClick(String currentPassword) {
     }
 
     public void onClearButtonLongClick() {
     }
 
-    public void onOkButtonClick() {
+    public void onOkButtonClick(String currentPassword) {
     }
 
 }
